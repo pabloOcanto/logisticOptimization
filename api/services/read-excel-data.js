@@ -1,7 +1,6 @@
 module.exports={
 
-
-  read : function(file){
+ read : function(file){
 	var path ='./data/'
   path +=file
 	var XLSX = require('xlsx');
@@ -15,7 +14,6 @@ module.exports={
 
       for(z in worksheet) {
           if(z[0] === '!') continue;
-          //parse out the column, row, and value
           var tt = 0;
           for (var i = 0; i < z.length; i++) {
               if (!isNaN(z[i])) {
@@ -36,7 +34,7 @@ module.exports={
           if(!data[row]) data[row]={};
           data[row][headers[col]] = value;
       }
-      //drop those first two rows which are empty
+
       data.shift();
       data.shift();       
     });

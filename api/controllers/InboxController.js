@@ -10,7 +10,7 @@ module.exports = {
   /*
 	author: pablo ocanto
 	mail  : pomalianni@gmail.com
-	goal  : Check in a new a pacakage and a asigne a new branch delivery
+	goal  : Register new entry and a asigne a new branch delivery
   */
   create : function(req,res){
 

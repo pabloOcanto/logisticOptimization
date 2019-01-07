@@ -1,8 +1,9 @@
 /**
  * MainOfficeController
  *
- * @description :: Server-side actions for handling incoming requests.
- * @help        :: See https://sailsjs.com/docs/concepts/actions
+ * @description ::This object will be used like a helper 
+ 				  with the final purpose to decide wich branch office will be assigned.
+
  */
 
 module.exports = {
@@ -24,6 +25,14 @@ module.exports = {
 
 		return inbox;
 	},
+
+    /*
+	Author:pablo ocanto
+	date:20180107
+	mail:pomalianni@gmial.com
+	description:'This method calculate the distance of delivery 
+	between the destination with each city of our warehouse'.
+	*/
 
 
 	getDistances : function(inbox){
@@ -51,9 +60,9 @@ module.exports = {
 	  			pDistance.then( (response) => {	
 	  			var attrib = response[0].rows[0].elements[0];
 				var distance = parseFloat(attrib.distance.value / 1000).toFixed(2);
-				//orderedList = insertByDistance.sortBydistance(distance,response[1],orderedList);		
-				//gurda informacion en una tabla temporal con el ID de la bandeja de entrada para armar el algoritmo de asignacion
-	
+				var office = response[1];
+
+				Temporal.save({target:inbox.target,warehouse:office.code,current_storage:office.storage,current_limte:office.limit,distance:distance}).exec((err,succ)=>{});
 	 			}).catch( (response) => {
 	    		return 500;
 				});
@@ -68,59 +77,72 @@ module.exports = {
 
 
 
+   /*
+	Author:pablo ocanto
+	date:20180107
+	mail:pomalianni@gmial.com
+	description:'This method take the records from table temporal 
+	and iterate for each one, check the cost and storage available and assign a warehouse of delivery .'
+
+	Rule for delivery : if delivery Cost is less than penalty cost.
+	and percent storage not greater than 95 percent.
+	penaltyCost = (days passe by USD 70)
+	
+	*/
+
    	resolveBestOptionDelivery :function(inbox){
 
-   		Temporal.find({id:inbox.id}).sort({ distance: 'ASC' }).exec((err,records) =>{
+   		Temporal.find({}).sort({ distance: 'ASC' }).exec((err,records) =>{
 
-   			//chequeo si c/sucursal si no supera el 95% de su capacidad
-   			// y que se conveniente  pagar la multa por no entregar el paquete
- 			var limit_alert = (((orderedList[key].storage +1) *100 )/orderedList[key].limit).toFixed(2)
-			var deliveryCost = Math.round(orderedList[key].distance/5)
+ 			var limit_alert = (((records.storage +1) *100 )/records[key].limit).toFixed(2)
+			var deliveryCost = Math.round(records[key].distance/5)
 
 			if ((deliveryCost  <= penaltyCost ) && (limit_alert <= 95)) {
-				//Actualizo el stock de la surscal
-				Office.updateOne({code:orderedList[key].code}).set({storage:orderedList[key].storage+1}).exec((err,offic)=>{});
-				
-
-				//genero un alerta a la surcusal central
+				inbox.office = records.code;
+				Office.updateOne({code:records[key].code}).set({storage:records[key].storage+1}).exec((err,offic)=>{});
 				if (limit_alert+1 >= 95){
-					Alert.create({code:key,percente:limit_alert}).exec((err,alert)=>{});
+					Alert.create({code:records[key].code,percente:limit_alert}).exec((err,alert)=>{});
 				}
 
-				//elimino registro de la tabla temporal
-				//solo se uttiliza para procesamiento del paquete.
 			}
 
    		});
 
+
+   		Temporal.destroy().exec(()=>{});
+
    	},
 
+   	/*
+	Author:pablo ocanto
+	date:20180107
+	mail:pomalianni@gmial.com
+	description:'If the delivery couldn't be assigned,  it is checked if some branch 
+	office has storage available as long as the delivery cost not to be greater than penalty cost' 
+	*/
 
-   	//va a tomar el pakete y si no pudo ser asignado
-   	//solo comprueba le mejor obcion de  costo de entrega 
+
    	checkStatus:function(inbox){
-   		Temporal.find({id:inbox.id}).sort({ distance: 'ASC' }).exec((err,records) =>{
 
+   		if (inbox.office != ''){
+
+   			Temporal.find({id:inbox.id}).sort({ distance: 'ASC' }).exec((err,records) =>{
 	   		var limit_alert = (((orderedList[key].storage +1) *100 )/orderedList[key].limit).toFixed(2)
 			var deliveryCost = Math.round(orderedList[key].distance/5)
 
 			if ((deliveryCost  <= penaltyCost ) && (limit_alert < 100)) {
-					//Actualizo el stock de la surscal
-			Office.updateOne({code:orderedList[key].code}).set({storage:orderedList[key].storage+1}).exec((err,offic)=>{});
-			//genero un alerta de aviso crito a la sucursal
-			if (limit_alert+1 >= 95){
-				Alert.create({code:key,percente:limit_alert}).exec((err,alert)=>{});
-				}
-			}
+				inbox.office = records.code;
+				Office.updateOne({code:orderedList[key].code}).set({storage:orderedList[key].storage+1}).exec((err,offic)=>{});
+		    }
 
-   		});
+   			});
 
-   	},
+   		}
 
 
+   	}
 
-
-};
+}   	
 
 
 
