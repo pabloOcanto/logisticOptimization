@@ -9,10 +9,10 @@ module.exports = {
 
   attributes: {
 
-    name :{
+    code :{
         type:'string',
         unique:true,
-        required:true
+        required:true,
     },
 
     city:{
@@ -23,7 +23,15 @@ module.exports = {
     storage:{
         type:'number',
         required:true
-    }
+    },
+
+    storage_limit:{
+        type:'number',
+        required:true
+        //defaultsTo:20
+    },
+
+
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗

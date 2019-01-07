@@ -1,5 +1,5 @@
 /**
- * Inbox.js
+ * Temporal.js
  *
  * @description :: A model definition represents a database table/collection.
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
@@ -7,37 +7,32 @@
 
 module.exports = {
 
-
-  attributes: { 
+  attributes: {
 
     target:{
         type:'string',
         required:true
     },
 
-    entry_date:{
+    warehouse:{
         type:'string',
         required:true
     },
 
-    egress_date:{
-        type:'string',
+    current_storage:{
+        type:'number',
+        required:true
     },
 
-    office:{
-        model:'offices',
-        unique:true
+    current_limte:{
+        type:'number',
+        required:true
     },
 
-    status:{
-        type:'string',
-        defaultsTo: 'undelivered'
+    distance:{
+        type:'number',
+        required:true
     }
-
-
-
-
-
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗

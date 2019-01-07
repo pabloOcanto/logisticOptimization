@@ -10,6 +10,10 @@
 
 module.exports.custom = {
 
+  google_map: 'google-distance-matrix',    
+  apiKey : 'AIzaSyDyAIZrXnrzl7u487YOR4iPRQpSdmXxWgU'
+
+
   /***************************************************************************
   *                                                                          *
   * Any other custom config this Sails app should use during development.    *

@@ -1,0 +1,714 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 4.5.1
+- https://www.phpmyadmin.net
+-
+- Servidor: 127.0.0.1
+- Tiempo de generación: 07-01-2019 a las 20:56:02
+- Versión del servidor: 10.1.9-MariaDB
+- Versión de PHP: 5.6.15
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="http://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="arz" collation="utf8_spanish2_ci" charset="utf8">
+            <pma:table name="alert">
+                CREATE TABLE `alert` (
+                  `createdAt` bigint(20) DEFAULT NULL,
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `code` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+                  `percent` double DEFAULT NULL,
+                  PRIMARY KEY (`id`),
+                  UNIQUE KEY `id` (`id`),
+                  UNIQUE KEY `code` (`code`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+            </pma:table>
+            <pma:table name="archive">
+                CREATE TABLE `archive` (
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `createdAt` bigint(20) DEFAULT NULL,
+                  `fromModel` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+                  `originalRecord` longtext COLLATE utf8_spanish2_ci,
+                  `originalRecordId` longtext COLLATE utf8_spanish2_ci,
+                  PRIMARY KEY (`id`),
+                  UNIQUE KEY `id` (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+            </pma:table>
+            <pma:table name="inbox">
+                CREATE TABLE `inbox` (
+                  `createdAt` bigint(20) DEFAULT NULL,
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `target` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+                  `entry_date` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+                  `egress_date` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+                  `status` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+                  `office` int(11) DEFAULT NULL,
+                  PRIMARY KEY (`id`),
+                  UNIQUE KEY `id` (`id`),
+                  UNIQUE KEY `office` (`office`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=62 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+            </pma:table>
+            <pma:table name="offices">
+                CREATE TABLE `offices` (
+                  `createdAt` bigint(20) DEFAULT NULL,
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `code` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+                  `city` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+                  `storage` double DEFAULT NULL,
+                  `storage_limit` double DEFAULT NULL,
+                  PRIMARY KEY (`id`),
+                  UNIQUE KEY `id` (`id`),
+                  UNIQUE KEY `code` (`code`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+            </pma:table>
+            <pma:table name="temporal">
+                CREATE TABLE `temporal` (
+                  `createdAt` bigint(20) DEFAULT NULL,
+                  `id` int(11) NOT NULL AUTO_INCREMENT,
+                  `target` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+                  `warehouse` varchar(255) COLLATE utf8_spanish2_ci DEFAULT NULL,
+                  `current_storage` double DEFAULT NULL,
+                  `current_limte` double DEFAULT NULL,
+                  `distance` double DEFAULT NULL,
+                  PRIMARY KEY (`id`),
+                  UNIQUE KEY `id` (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish2_ci;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Base de datos: 'arz'
+    -->
+    <database name="arz">
+        <!-- Tabla alert -->
+        <!-- Tabla archive -->
+        <!-- Tabla inbox -->
+        <table name="inbox">
+            <column name="createdAt">1546805457464</column>
+            <column name="id">1</column>
+            <column name="target">Gral Lamadrid</column>
+            <column name="entry_date">20190106</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546805564392</column>
+            <column name="id">2</column>
+            <column name="target">Gral Lamadrid</column>
+            <column name="entry_date">20190106</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">99</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546805648153</column>
+            <column name="id">3</column>
+            <column name="target">Gral Lamadrid</column>
+            <column name="entry_date">20190106</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">221</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546805715846</column>
+            <column name="id">4</column>
+            <column name="target">Gral Lamadrid</column>
+            <column name="entry_date">20190106</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">123</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546805808395</column>
+            <column name="id">5</column>
+            <column name="target">Gral Lamadrid</column>
+            <column name="entry_date">20190106</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546806603413</column>
+            <column name="id">6</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190106</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546806714748</column>
+            <column name="id">7</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190106</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546807536998</column>
+            <column name="id">8</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190106</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546807642160</column>
+            <column name="id">9</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190106</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546807822522</column>
+            <column name="id">10</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190106</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546807876803</column>
+            <column name="id">11</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190106</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546807943811</column>
+            <column name="id">12</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546809347294</column>
+            <column name="id">13</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546809456134</column>
+            <column name="id">14</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546809494562</column>
+            <column name="id">15</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546809568517</column>
+            <column name="id">16</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546809605246</column>
+            <column name="id">17</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546809827327</column>
+            <column name="id">18</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190102</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546809895643</column>
+            <column name="id">19</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190102</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546810672873</column>
+            <column name="id">20</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190102</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546810733842</column>
+            <column name="id">21</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190102</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546810864597</column>
+            <column name="id">22</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190102</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546810922947</column>
+            <column name="id">23</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190102</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546811048022</column>
+            <column name="id">24</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190102</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546811236715</column>
+            <column name="id">25</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190102</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546811563361</column>
+            <column name="id">26</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190102</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546811783647</column>
+            <column name="id">27</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190102</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546811844494</column>
+            <column name="id">28</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190102</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546828688853</column>
+            <column name="id">29</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190102</column>
+            <column name="egress_date"></column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546829521999</column>
+            <column name="id">30</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190102</column>
+            <column name="egress_date"></column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546829522028</column>
+            <column name="id">31</column>
+            <column name="target">Tandil</column>
+            <column name="entry_date">20190102</column>
+            <column name="egress_date"></column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546830115518</column>
+            <column name="id">33</column>
+            <column name="target">Tandil</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546834608249</column>
+            <column name="id">34</column>
+            <column name="target">Tandil</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546834769065</column>
+            <column name="id">35</column>
+            <column name="target">Tandil</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546834870547</column>
+            <column name="id">36</column>
+            <column name="target">Tandil</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546835200041</column>
+            <column name="id">37</column>
+            <column name="target">Tandil</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546835267477</column>
+            <column name="id">38</column>
+            <column name="target">Tandil</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546835346261</column>
+            <column name="id">39</column>
+            <column name="target">Tandil</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546835416814</column>
+            <column name="id">40</column>
+            <column name="target">Banfield</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546835452269</column>
+            <column name="id">41</column>
+            <column name="target">Banfield</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546835559588</column>
+            <column name="id">42</column>
+            <column name="target">Banfield Buenos Aires</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546835559616</column>
+            <column name="id">43</column>
+            <column name="target">Quilmes</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546835646450</column>
+            <column name="id">44</column>
+            <column name="target">Quilmes</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546835688874</column>
+            <column name="id">45</column>
+            <column name="target">Quilmes Bueno Aires</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546835720725</column>
+            <column name="id">46</column>
+            <column name="target">Olvarria</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546835806437</column>
+            <column name="id">47</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546835897853</column>
+            <column name="id">48</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546835955698</column>
+            <column name="id">49</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546836049389</column>
+            <column name="id">50</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546836142579</column>
+            <column name="id">51</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546836282354</column>
+            <column name="id">52</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546836384121</column>
+            <column name="id">53</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546836442139</column>
+            <column name="id">54</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546836490881</column>
+            <column name="id">55</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546836698246</column>
+            <column name="id">56</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546836956741</column>
+            <column name="id">57</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546837050787</column>
+            <column name="id">58</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546837124430</column>
+            <column name="id">59</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date">20190107</column>
+            <column name="status">delivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546839727567</column>
+            <column name="id">60</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <table name="inbox">
+            <column name="createdAt">1546840173503</column>
+            <column name="id">61</column>
+            <column name="target">La Prida</column>
+            <column name="entry_date">20190104</column>
+            <column name="egress_date"></column>
+            <column name="status">undelivered</column>
+            <column name="office">NULL</column>
+        </table>
+        <!-- Tabla offices -->
+        <table name="offices">
+            <column name="createdAt">1546878935185</column>
+            <column name="id">1</column>
+            <column name="code">WH01</column>
+            <column name="city">Buenos Aires</column>
+            <column name="storage">0</column>
+            <column name="storage_limit">200</column>
+        </table>
+        <table name="offices">
+            <column name="createdAt">1546878935185</column>
+            <column name="id">2</column>
+            <column name="code">WH02</column>
+            <column name="city">Rosario</column>
+            <column name="storage">0</column>
+            <column name="storage_limit">70</column>
+        </table>
+        <table name="offices">
+            <column name="createdAt">1546878935185</column>
+            <column name="id">3</column>
+            <column name="code">WH03</column>
+            <column name="city">Córdoba</column>
+            <column name="storage">0</column>
+            <column name="storage_limit">150</column>
+        </table>
+        <table name="offices">
+            <column name="createdAt">1546878935185</column>
+            <column name="id">4</column>
+            <column name="code">WH04</column>
+            <column name="city">Trelew</column>
+            <column name="storage">0</column>
+            <column name="storage_limit">140</column>
+        </table>
+        <table name="offices">
+            <column name="createdAt">1546878935185</column>
+            <column name="id">5</column>
+            <column name="code">WH05</column>
+            <column name="city">Mendoza</column>
+            <column name="storage">0</column>
+            <column name="storage_limit">150</column>
+        </table>
+        <table name="offices">
+            <column name="createdAt">1546878935185</column>
+            <column name="id">6</column>
+            <column name="code">WH056</column>
+            <column name="city">La Plata</column>
+            <column name="storage">0</column>
+            <column name="storage_limit">100</column>
+        </table>
+        <table name="offices">
+            <column name="createdAt">1546878935185</column>
+            <column name="id">7</column>
+            <column name="code">WH07</column>
+            <column name="city">San Miguel de Tucumán</column>
+            <column name="storage">0</column>
+            <column name="storage_limit">120</column>
+        </table>
+        <table name="offices">
+            <column name="createdAt">1546878935185</column>
+            <column name="id">8</column>
+            <column name="code">WH08</column>
+            <column name="city">Mar del Plata</column>
+            <column name="storage">0</column>
+            <column name="storage_limit">180</column>
+        </table>
+        <table name="offices">
+            <column name="createdAt">1546878935185</column>
+            <column name="id">9</column>
+            <column name="code">WH09</column>
+            <column name="city">Salta</column>
+            <column name="storage">0</column>
+            <column name="storage_limit">140</column>
+        </table>
+        <table name="offices">
+            <column name="createdAt">1546878935185</column>
+            <column name="id">10</column>
+            <column name="code">WH10</column>
+            <column name="city">Santa Fe</column>
+            <column name="storage">0</column>
+            <column name="storage_limit">70</column>
+        </table>
+        <!-- Tabla temporal -->
+    </database>
+</pma_xml_export>

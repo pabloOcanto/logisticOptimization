@@ -88,6 +88,8 @@
     "semi":                         ["warn", "always"],
     "semi-spacing":                 ["warn", {"before":false, "after":true}],
     "semi-style":                   ["warn", "last"]
-  }
+  },
+
+  "extends": "airbnb"
 
 }

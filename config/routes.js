@@ -21,6 +21,59 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
 
+  /*
+  Metodos de Inbox Controller
+  */
+
+  'GET /inbox/get':{
+    controller:'InboxController',
+    action:'get'
+  },
+
+  'POST /inbox/create':{
+    controller:'InboxController',
+    action:'create'
+  },
+
+  'PUT /inbox/update':{
+    controller:'InboxController',
+    action:'update'
+  },
+
+  'DELETE /inbox/delete':{
+    controller:'InboxController',
+    action:'delete'
+  },
+
+
+  /*
+    Metodos de Offices controller
+  */
+
+  'GET /offices/initialize':{
+    controller:'Offices',
+    action:'initialize'
+  },
+
+  'GET /offices/get':{
+    controller:'Offices',
+    action:'get'
+  },
+
+  'POST /offices/create':{
+    controller:'Offices',
+    action:'create'
+  },
+
+  'PUT /offices/update':{
+    controller:'Offices',
+    action:'update'
+  },
+
+  'DELETE /inbox/delete':{
+    controller:'InboxController',
+    action:'delete'
+  },
 
   /***************************************************************************
   *                                                                          *
