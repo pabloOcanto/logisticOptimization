@@ -8,11 +8,13 @@
 module.exports = {
 
   attributes: {
-
-    code :{
+    
+    autoPK:false,
+    id:{
         type:'string',
         unique:true,
         required:true,
+        columnName:'code'
     },
 
     city:{

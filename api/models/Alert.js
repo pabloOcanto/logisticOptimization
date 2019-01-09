@@ -10,10 +10,15 @@ module.exports = {
   
  attributes: {
 
+    id: { 
+        type: 'number', 
+        autoIncrement: true
+    },
+
     code :{
         type:'string',
         required:true,
-        unique:true
+        unique:true,       
     },
 
     percent:{

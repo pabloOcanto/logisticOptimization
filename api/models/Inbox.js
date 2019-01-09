@@ -7,8 +7,13 @@
 
 module.exports = {
 
-
+  
   attributes: { 
+
+    id: { 
+    type: 'number', 
+    autoIncrement: true 
+    },
 
     target:{
         type:'string',
@@ -26,7 +31,6 @@ module.exports = {
 
     office:{
         model:'offices',
-        unique:true
     },
 
     status:{

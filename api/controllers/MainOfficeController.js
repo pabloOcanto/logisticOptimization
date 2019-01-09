@@ -6,24 +6,31 @@
 
  */
 
+
 module.exports = {
 
 	dispatch: function(inbox){
-
 		var moment = require('moment');	
 		var current_date = require('../services/today');
 		var distance =require('../services/distance');
-		var insertByDistance =require('../services/insertByDistance');
 
-		var today  = moment(current_date());
-		var entry_date  = moment(inbox.entry_date);
-		var penaltyCost = today.diff(entry_date) * 70 + 70; // costo de penalizacion + dias por no entregar
-  
+		var today  = current_date();
+		var entry_date  = inbox.entry_date;
+		today = moment(today);
+		entry_date = moment(entry_date);
+		inbox['egress_date'] = current_date();
+		inbox['penaltyCost'] = today.diff(entry_date, 'days') * 70 
+		inbox['penaltyCost'] += 70
+		inbox['penaltyCost'] = parseInt(inbox['penaltyCost'])
+
+		 // costo de penalizacion + dias por no entregar
 		this.getDistances(inbox);
-		this.resolveBestOptionDelivery(inbox)
-		this.checkStatus(inbox)
+	    this.resolveBestOptionDelivery(inbox);
+	    Temporal.destroy({}).exec((err,succ) =>{});
 
-		return inbox;
+		return 1;
+
+
 	},
 
     /*
@@ -36,9 +43,11 @@ module.exports = {
 
 
 	getDistances : function(inbox){
+	console.log(inbox)
 
 	let p = new Promise( (resolve, reject) => {
 
+		
 	  	var target = inbox.target
 		Offices.find({}).exec(function(err,list){
 		 	if(err) {
@@ -52,8 +61,7 @@ module.exports = {
   		})});
 
 
-  	p.then( (office) => {
-
+	  	p.then( (office) => {
   		    var orderedList = new Array();
 	  		for ( i in office ) {
 	  			var pDistance = distance(inbox.target,office[i]);
@@ -62,16 +70,21 @@ module.exports = {
 				var distance = parseFloat(attrib.distance.value / 1000).toFixed(2);
 				var office = response[1];
 
-				Temporal.save({target:inbox.target,warehouse:office.code,current_storage:office.storage,current_limte:office.limit,distance:distance}).exec((err,succ)=>{});
+
+				Temporal.create({target:inbox.target,warehouse:office.code,current_storage:office.storage,current_limte:office.limit,distance:distance}).exec((err,succ)=>{});
 	 			}).catch( (response) => {
 	    		return 500;
 				});
+		
 	  		}
 
 
    	}).catch( (office) => {
-      	return 500;
+      	console.log(records);
 	});
+
+
+	return;
 
    },
 
@@ -92,25 +105,54 @@ module.exports = {
 
    	resolveBestOptionDelivery :function(inbox){
 
-   		Temporal.find({}).sort({ distance: 'ASC' }).exec((err,records) =>{
+   		console.log(inbox)
+	
+   	let p = new Promise( (resolve, reject) => {
+   		Temporal.find({}).sort('distance asc').limit(10).exec((err,list)=>{
+			if(err) {
+		    	reject('error');
+		    }
+			resolve(list);
 
- 			var limit_alert = (((records.storage +1) *100 )/records[key].limit).toFixed(2)
-			var deliveryCost = Math.round(records[key].distance/5)
+	  	});
+  	});
 
-			if ((deliveryCost  <= penaltyCost ) && (limit_alert <= 95)) {
-				inbox.office = records.code;
-				Office.updateOne({code:records[key].code}).set({storage:records[key].storage+1}).exec((err,offic)=>{});
-				if (limit_alert+1 >= 95){
-					Alert.create({code:records[key].code,percente:limit_alert}).exec((err,alert)=>{});
-				}
+   	p.then( (records) => {
+   		console.log(records);
 
+  	for (key in records) {	
+  			console.log(records[key]);	
+			var limit_alert = (((records[key].current_storage +1) *100 )/records[key].current_limte).toFixed(2)
+			var deliveryCost = Math.round(records[key].distance/5);
+			var penaltyCost = inbox.penaltyCost;
+
+		    if (limit_alert >= 95){
+				//Alert.findOrCreate({code:records[key].warehouse},{code:records[key].warehouse,percent:limit_alert}).exec((err,alert)=>{console.log(err)});
+				continue;
 			}
 
-   		});
+			if (deliveryCost  <= penaltyCost ){
+				records[key].current_storage =parseInt(records[key].current_storage)+1;
+				warehouse = records[key].warehouse;
+				inbox['office'] = warehouse;
+   				inbox['status'] ='delivered'
+   				storage:records[key].current_storage +=1;
+				Offices.updateOne({id:records[key].warehouse}).set({storage:records[key].current_storage}).exec((err,offic)=>{
+				});
+				break;
+			}
+
+   		}
+
+   		this.checkStatus(inbox);
 
 
-   		Temporal.destroy().exec(()=>{});
+   	}).catch( (records) => {
+      	console.log(records);
+	});
 
+   	//console.log(inbox);
+   	return;
    	},
 
    	/*
@@ -124,23 +166,47 @@ module.exports = {
 
    	checkStatus:function(inbox){
 
-   		if (inbox.office != ''){
+   		console.log(inbox)
+   		console.log(inbox.office)
+   		//return;
+   		
+   		if (typeof inbox.office === 'undefined'){
+  
+	   		Temporal.find({id:inbox.id}).sort().limit(10).exec((err,records) =>{
+	   			for (key in records) {	
+	   				var penaltyCost = inbox.penaltyCost
+			   		var deliveryCost = Math.round(orderedList[key].distance/5)
+					console.log(deliveryCost)
+					console.log(penaltyCost)
+					records[key].current_storage += 1;
 
-   			Temporal.find({id:inbox.id}).sort({ distance: 'ASC' }).exec((err,records) =>{
-	   		var limit_alert = (((orderedList[key].storage +1) *100 )/orderedList[key].limit).toFixed(2)
-			var deliveryCost = Math.round(orderedList[key].distance/5)
+					if ((deliveryCost  <= penaltyCost ) && (records[key].current_storage < records[key].current_limte)) {
+						warehouse = records[key].warehouse;
+						inbox['office'] = warehouse;
+   						inbox['status'] ='delivered';
+   						records[key].current_storage +=1;
+   						Offices.updateOne({id:records[key].warehouse}).set({storage:records[key].current_storage}).exec((err,offic)=>{});
+   						break;
+				    }
 
-			if ((deliveryCost  <= penaltyCost ) && (limit_alert < 100)) {
-				inbox.office = records.code;
-				Office.updateOne({code:orderedList[key].code}).set({storage:orderedList[key].storage+1}).exec((err,offic)=>{});
-		    }
-
-   			});
-
-   		}
+		   		}
+		   	})
 
 
-   	}
+   	    }
+
+   	    if (typeof inbox.office === 'undefined') {
+   	    	inbox['egress_date'] = '';
+   	    }
+
+   	    Inbox.create(inbox).exec((err,item)=>{console.log(err)});
+   	    
+
+   	    return;
+
+    }
+
+
 
 }   	
 

@@ -17,15 +17,9 @@ module.exports = {
   	var mainOffice = require('./MainOfficeController')
     var current_date = require('../services/today')
   	var pacakage =req.body;
-   	var pacakage = mainOffice.dispatch(pacakage)
+    mainOffice.dispatch(pacakage);
+    return res.json("the pacakage was Registered");
 
-  	Inbox.create(pacakage).exec(function(err,items){
-  		if (err) {
-  			return res.json(err)
-  		}	
-  		return res.ok(code)
-
-  	})
   },
 
   update : function(req,res){

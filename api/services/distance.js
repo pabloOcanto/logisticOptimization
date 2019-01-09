@@ -37,11 +37,11 @@ module.exports =  function(orig, dest){
 
 			var arr = new Array();
 			var arr_dest = {
-				'code':dest.code,
+				'code':dest.id,
 				'city':dest.city,
 				'storage':dest.storage,
-				'limit':dest.limit,
-			}
+				'limit':dest.storage_limit,
+			};
 			arr.push(response);
 			arr.push(arr_dest);
 
