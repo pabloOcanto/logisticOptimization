@@ -30,15 +30,14 @@ module.exports = {
     },
 
     office:{
-        model:'offices',
+        model:'Offices',
+
     },
 
     status:{
         type:'string',
         defaultsTo: 'undelivered'
-    }
-
-
+    },
 
 
 

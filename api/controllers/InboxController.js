@@ -5,64 +5,63 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
-module.exports = {
-  
-  /*
+module.exports = { 
+
+	/*
 	author: pablo ocanto
 	mail  : pomalianni@gmail.com
-	goal  : Register new entry and a asigne a new branch delivery
+	goal  : Register new entry and a asigne a new branch office delivery
   */
-  create : function(req,res){
+	async create(req, res) {
 
-  	var mainOffice = require('./MainOfficeController')
-    var current_date = require('../services/today')
-  	var pacakage =req.body;
-    mainOffice.dispatch(pacakage);
-    return res.json("the pacakage was Registered");
+	const entry = await sails.helpers.distpacher(req)
+				.intercept((err)=>res.json(err));
+	if (entry){
+		return res.json(entry); 
+	}
+		return res.serverError('Something was wrong');
 
-  },
+	},
 
-  update : function(req,res){
-  	Inbox.updateOne({ id:req.body.id}).set(req.body).exec(function(err,newInbox){
+	update(req, res) {
+  	Inbox.updateOne({ id: req.body.id }).set(req.body).exec((err, newInbox) => {
   		if (err) {
-  			return res.json(err)
+  			return res.json(err);
   		}
-  		return res.json(newInbox)
-  	})
-  },
+  		return res.json(newInbox);
+  	});
+	},
 
-  delete:function(req,res){
-  var status = 202;
-	var http = require('http');
-  	Inbox.destroy({id:req.body.id}).exec(function(err,items){
+	delete(req, res) {
+		const status = 202;
+		const http = require('http');
+  	Inbox.destroy({ id: req.body.id }).exec((err, items) => {
 	  	if (err) {
-	  		return res.json(err)
+	  		return res.json(err);
 	  	}
 	  	res.status(status).end(http.STATUS_CODES[status]);
-	  	})
-   },
+	  	});
+	},
 
-    get :function(req,res){
-      var params = req.allParams();      
-      if (params){
-          Inbox.find(params).exec((err,pacakages)=>{
-          if(err){
-          return res.serverError(err);
-          }
-          return res.json(pacakages);
-        }); 
-      }else{
-        Inbox.find().exec((err,pacakages)=>{
-        if(err){
-        return res.serverError(err);
-        }
-        return res.json(pacakages);
-      });
-    }
-
-  }
+	get(req, res) {
+		const params = req.allParams();
+		if (params) {
+			Inbox.find(params).exec((err, pacakages) => {
+				if (err) {
+					return res.serverError(err);
+				}
+				return res.json(pacakages);
+			});
+		} else {
+			Inbox.find().exec((err, pacakages) => {
+				if (err) {
+					return res.serverError(err);
+				}
+				return res.json(pacakages);
+			});
+		}
+	},
 
 
 
 };
-
