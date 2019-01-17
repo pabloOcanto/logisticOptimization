@@ -9,11 +9,16 @@
     "@sailshq/lodash": "^3.10.3",
     "@sailshq/socket.io-redis": "^5.2.0",
     "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-formatter-pretty": "^2.0.0",
     "google-distance-matrix": "^1.1.1",
     "grunt": "^1.0.3",
     "hashmap": "^2.3.0",
     "moment": "^2.23.0",
+    "request": "^2.88.0",
     "sails": "^1.1.0",
+    "sails-disk": "^1.0.1",
     "sails-hook-grunt": "^3.1.0",
     "sails-hook-orm": "^2.1.1",
     "sails-hook-sockets": "^1.5.5",
@@ -22,14 +27,23 @@
   },
   "devDependencies": {
     "@sailshq/eslint": "^4.19.3",
-    "eslint": "^5.3.0",
+    "eslint": "^5.12.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "jest": "^23.6.0",
-    "jest-cli": "^23.6.0"
+    "jest-cli": "^23.6.0",
+    "jest-each": "^23.6.0",
+    "sails-mock-models": "0.0.6",
+    "sails-test-helper": "^0.5.0",
+    "supertest": "^3.3.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "SET NODE_ENV=test && node node_modules\\jest\\bin\\jest.js",
+    "test:watch": "SET NODE_ENV=test &&  node node_modules\\jest\\bin\\jest.js --watch",
+    "test:coverage": "SET NODE_ENV=test &&  node node_modules\\jest\\bin\\jest.js --coverage",
+    "test:all": "SET NODE_ENV=test && npm run lint && npm run test:coverage",
+    "debug": "node debug app.js",
+    "start": "node app.js"
   },
   "main": "app.js",
   "repository": {
@@ -40,5 +54,20 @@
   "license": "",
   "engines": {
     "node": "^10.15"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/jest/setup.js",
+    "testMatch": [
+      "<rootDir>/__test__/**/?(*.)(spec|test).js?(x)"
+    ],
+    "modulePaths": [
+      "<rootDir>"
+    ]
+  },
+  "lint-staged": {
+    "{api,config,jest,tests}/**/*.{js,json}": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }

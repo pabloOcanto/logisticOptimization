@@ -29,7 +29,6 @@ module.exports.globals = {
   * > Your code can (and probably should) use `await` as much as possible.    *
   *                                                                           *
   ****************************************************************************/
-
   async: false,
 
   /****************************************************************************
@@ -39,7 +38,7 @@ module.exports.globals = {
   *                                                                           *
   ****************************************************************************/
 
-  models: true,
+ models: true,
 
   /****************************************************************************
   *                                                                           *
@@ -49,5 +48,10 @@ module.exports.globals = {
   ****************************************************************************/
 
   sails: true,
+
+  google_map:require('google-distance-matrix'),
+
+  //google_map: 'google-distance-matrix',    
+  apiKey : 'AIzaSyDyAIZrXnrzl7u487YOR4iPRQpSdmXxWgU'
 
 };

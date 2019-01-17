@@ -25,22 +25,22 @@ module.exports.routes = {
   Metodos de Inbox Controller
   */
 
-  'GET /logistic/rest/inbox/get':{
+  'GET /inbox':{
     controller:'InboxController',
     action:'get'
   },
 
-  'POST /logistic/rest/inbox/create':{
+  'POST /inbox':{
     controller:'InboxController',
     action:'create'
   },
 
-  'PUT /logistic/rest/inbox/update':{
+  'PUT /inbox':{
     controller:'InboxController',
     action:'update'
   },
 
-  'DELETE /logistic/rest/inbox/delete':{
+  'DELETE /inbox':{
     controller:'InboxController',
     action:'delete'
   },
@@ -50,27 +50,23 @@ module.exports.routes = {
     Metodos de Offices controller
   */
 
-  'GET /logistic/rest/offices/initialize':{
-    controller:'Offices',
-    action:'initialize'
-  },
 
-  'GET /logistic/rest/offices/get':{
+  'GET /offices':{
     controller:'Offices',
     action:'get'
   },
 
-  'POST /logistic/rest/offices/create':{
+  'POST /offices':{
     controller:'Offices',
     action:'create'
   },
 
-  'PUT /logistic/rest/offices/update':{
+  'PUT /offices':{
     controller:'Offices',
     action:'update'
   },
 
-  'DELETE /logistic/rest/inbox/delete':{
+  'DELETE /inbox':{
     controller:'InboxController',
     action:'delete'
   },
