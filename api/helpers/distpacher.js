@@ -29,16 +29,18 @@ module.exports = {
 		const moment = require('moment');
 		const current_date = require('../services/today');
 
-		const inbox = { target: inputs.req.body.target, entry_date: inputs.req.body.entry_date, status: 'undelivered' };
+		const inbox = { target: inputs.req.body.target, entry_date: inputs.req.body.entry_date, status: 'undelivered',egress_date:'' ,penaltyCost:0};
 
 		let today = current_date();
 		let entry_date = inbox.entry_date;
-		today = moment(today);
-		entry_date = moment(entry_date);
+		today = moment(today,'YYYY-MM-DD');
+		entry_date = moment(entry_date,'YYYY-MM-DD');
 		inbox.egress_date = current_date();
 		inbox.penaltyCost = today.diff(entry_date, 'days') * 70;
 		inbox.penaltyCost += 70;
 		inbox.penaltyCost = parseInt(inbox.penaltyCost);
+
+
 /*
  
   Author:pablo ocanto
@@ -54,39 +56,48 @@ module.exports = {
 */	
   	const offices = await Offices.find({});
 
-		const tempArr = [];
+		let tempArr = [];
 		for (i in offices) {
 			const response = await sails.helpers.distanceMatrix(inbox.target, offices[i].city);
 			if (response) {
 				const attrib = response.rows[0].elements[0];
 				const distance = parseFloat(attrib.distance.value / 1000).toFixed(2);
-
 				const temporal = {
 					target: inbox.target,
 					warehouse: offices[i].id,
 					current_storage: offices[i].storage,
 					current_limte: offices[i].storage_limit,
-					distance,
+					distance:distance
 				};
 
 
+				
 				if (tempArr.length === 0) {
-					tempArr.push(temporal);
-					continue;
-				}
+          			tempArr.push(temporal);
+          			continue
+          		}
 
-				let pos = 0;
-				for (var i = 0; i < tempArr.length; i += 1) {
-					if (tempArr[i].distance >= temporal.distance) {
-						pos = i;
-						break;
-					}
-				}
+        		var pos = 0;
+        		for (var i = 0; i < tempArr.length-1; i += 1) {
+          			if (tempArr[i].distance <= temporal.distance) {
+	            		pos = i;
+	            		break;
+          			}
+      			}
+      			
+      			if (i>tempArr.length){
+          			tempArr.splice(tempArrt.length, 0, temporal);
+        		}else{
+          			tempArr.splice(pos, 0, temporal);
+        		}
 
-				tempArr.splice(pos, 0, temporal);
+        		
+        		
 			}
 		};
 
+
+		
 /*
   END
 */  
@@ -120,8 +131,10 @@ module.exports = {
 				inbox.office = warehouse;
 				inbox.status = 'delivered';
 				tempArr[i].current_storage += 1;
+				//const update = await Offices.updateOne({ id: tempArr[i].warehouse }).set({ storage: tempArr[i].current_storage });
+				const update = await Offices.update({ id: tempArr[i].warehouse }).set({ storage: tempArr[i].current_storage }).fetch();
+				
 
-				const update = await Offices.updateOne({ id: tempArr[i].warehouse }).set({ storage: tempArr[i].current_storage });
 				if (!update) {
 					throw ("Couldn\'t update the storage");
 				}
@@ -155,7 +168,10 @@ module.exports = {
 					inbox.office = warehouse;
 					inbox.status = 'delivered';
 					tempArr[i].current_storage += 1;
-					const offUpdate = Offices.updateOne({ id: tempArr[i].warehouse }).set({ storage: tempArr[i].current_storage });
+					//const update = await Offices.updateOne({ id: tempArr[i].warehouse }).set({ storage: tempArr[i].current_storage });
+					
+					const update = await Offices.update({ id: tempArr[i].warehouse }).set({ storage: tempArr[i].current_storage }).fetch();
+				
 					if (!update) {
 						throw ('Couldn\'t update the storage');
 					}
@@ -171,14 +187,13 @@ module.exports = {
 
   */  
 
-
-		if (typeof inbox.office === 'undelivered') {
+		if (typeof inbox.office === 'undefined') {
 			inbox.egress_date = '';
 		}
 
-		console.log('create entry + ', inbox);
-
 		const entry = await Inbox.create(inbox).fetch();
+
+		console.log(entry);
 
 		return exits.success(entry);
 	},
