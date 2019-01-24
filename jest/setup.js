@@ -18,7 +18,7 @@ beforeAll((done)=> {
 
 
   }, err => {
-  	jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000;
+  	jasmine.DEFAULT_TIMEOUT_INTERVAL = 10000000;
   	global.app = request(sails.hooks.http.app);
     done(err, sails);
   });

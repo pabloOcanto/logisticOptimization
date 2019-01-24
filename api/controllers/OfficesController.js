@@ -17,6 +17,7 @@ module.exports = {
 	get(req, res) {
 
 		const params = req.allParams();
+		console.log(params);
 		if (params) {
 			if (params.limit) {
 				params.limit = parseInt((params.limit));
@@ -28,14 +29,14 @@ module.exports = {
 
 			Offices.find(params).exec((err, offices) => {
 				if (err) {
-					return res.serverError(err);
+					return res.status(500).send('internal server error');
 				}
 				return res.json(offices);
 			});
 		} else {
 			Offices.find().exec((err, offices) => {
 				if (err) {
-					return res.serverError(err);
+					return res.status(500).send('internal server error');
 				}
 				return res.json(offices);
 			});
@@ -52,7 +53,7 @@ module.exports = {
 	create(req, res) {
 		Offices.create(req.body).exec((err, office) => {
 			if (err) {
-				return res.serverError(err);
+				return res.status(500).send('internal server error');
 			}
 			return res.json(office);
 		});
@@ -60,32 +61,32 @@ module.exports = {
 
 
 	update(req, res) {
-		if (req.body.code) {
-			Offices.update({ code: req.body.code }).set(req.body).exec((err, office) => {
-				if (err) {
-					return res.serverError(err);
-				}
-				return res.json(office);
-			});
-		} else {
-			return res.json('expected code');
-		}
+		const id = req.body.id	
+		delete req.body.id
+
+		Offices.update({ id: id }).set(req.body).exec((err, office) => {
+			console.log(err)
+			console.log(office)
+			if (err) {
+				return res.status(500).send('internal server error');
+			}
+			return res.json(office);
+		});
+	 
 	},
 
 
 	delete(req, res) {
-		const status = 202;
-		const http = require('http');
-		if (req.body.code) {
-			Offices.desttroy({ code: req.body.code }).set(req.body).exec((err, office) => {
-				if (err) {
-					return res.serverError(err);
-				}
-				res.ok(res.status(status).end(http.STATUS_CODES[status]));
-			});
-		} else {
-			return res.json('expected code');
-		}
+		const id = req.body.id	
+		delete req.body.id
+
+		Offices.destroy({ id: id}).set(req.body).exec((err, office) => {
+			if (err) {
+				return res.status(500).send('internal server error');
+			}
+			res.ok(office);
+		});
+	
 	},
 
 

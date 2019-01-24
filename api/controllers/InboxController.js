@@ -14,32 +14,55 @@ module.exports = {
   */
 	async create(req, res) {
 
+	const moment = require('moment');
+
+	if(typeof req.body.target==='undefined' || req.body.target==='') {
+		return res.status(500).send('Missing parameter target');
+	}
+
+	if (typeof req.body.entry_date==='undefined' || req.body.entry_date ==='') {
+		return res.status(500).send('Missing entry_date parameter');	
+	}
+
+	var date = moment(req.body.entry_date,'YYYY-MM-DD', true);
+	var isValid = date.isValid();
+
+	if (!isValid){
+		return res.status(500).send('Entry_date must be the following format YYYY-MM-DD');
+	}
+
+	//if (!(d.isValid())){
+	//	return res.status(500).send('invalid entry_date or it is invalid');
+	//}
+
+	console.log("llamada al helper");
+
 	const entry = await sails.helpers.distpacher(req)
-				.intercept((err)=>res.json(err));
+				.intercept(()=>{return res.status(500).send('internal server error')});
 	if (entry){
 		return res.json(entry); 
 	}
-		return res.serverError('Something was wrong');
+		return res.status(500).send('internal server error');
 
 	},
 
 	update(req, res) {
-  	Inbox.updateOne({ id: req.body.id }).set(req.body).exec((err, newInbox) => {
+	const id = req.body.id	
+	delete req.body.id
+  	Inbox.updateOne({ id: id }).set(req.body).exec((err, newInbox) => {
   		if (err) {
-  			return res.json(err);
+  			return res.status(500).send('internal server error');
   		}
   		return res.json(newInbox);
   	});
 	},
 
 	delete(req, res) {
-		const status = 202;
-		const http = require('http');
-  	Inbox.destroy({ id: req.body.id }).exec((err, items) => {
+  	Inbox.destroy({ id: req.body.id }).exec((err, item) => {
 	  	if (err) {
-	  		return res.json(err);
+	  		return res.status(500).send('internal server error');
 	  	}
-	  	res.status(status).end(http.STATUS_CODES[status]);
+	  		return res.json(item);
 	  	});
 	},
 
@@ -48,14 +71,14 @@ module.exports = {
 		if (params) {
 			Inbox.find(params).exec((err, pacakages) => {
 				if (err) {
-					return res.serverError(err);
+					return res.status(500).send('internal server error');
 				}
 				return res.json(pacakages);
 			});
 		} else {
 			Inbox.find().exec((err, pacakages) => {
 				if (err) {
-					return res.serverError(err);
+					return res.status(500).send('internal server error');
 				}
 				return res.json(pacakages);
 			});

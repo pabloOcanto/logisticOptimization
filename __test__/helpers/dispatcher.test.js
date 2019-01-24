@@ -76,7 +76,7 @@ describe('we\'re going to delivery n packages with 2 days of delay', () => {
 		['Mar del Plata', paste_date(2)],
 		['Mar del Plata', paste_date(2)],
 		['Mar del Plata', paste_date(2)],
-		['La Plata', paste_date(2)])('target %s date %s, will expect that can\'t delivery', (target, date, done) => {
+		['La Plata', paste_date(2)]])('target %s date %s, will expect that can\'t delivery', (target, date, done) => {
 		const req = {};
 		req.body = { target, entry_date: date };
 		sails.helpers.distpacher(req).then((result) => {

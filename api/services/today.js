@@ -5,6 +5,7 @@ date:2190107
 description:'this function return the current  date*/
 
 module.exports=function(){
+
 	var today = new Date();
 	var dd = today.getDate();
 	var mm = today.getMonth() + 1; 
@@ -17,6 +18,6 @@ module.exports=function(){
   	mm = '0' + mm;
 	}
 
-	return  yyyy + mm + dd
+	return  yyyy +"-"+ mm +"-"+ dd
 
 }

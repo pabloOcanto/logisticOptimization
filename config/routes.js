@@ -52,22 +52,22 @@ module.exports.routes = {
 
 
   'GET /offices':{
-    controller:'Offices',
+    controller:'OfficesController',
     action:'get'
   },
 
   'POST /offices':{
-    controller:'Offices',
+    controller:'OfficesController',
     action:'create'
   },
 
   'PUT /offices':{
-    controller:'Offices',
+    controller:'OfficesController',
     action:'update'
   },
 
-  'DELETE /inbox':{
-    controller:'InboxController',
+  'DELETE /offices':{
+    controller:'OfficesController',
     action:'delete'
   },
 

@@ -14,7 +14,7 @@
 # Api rest
 #This section describe all api rest method for this aplication
 #first run the server localy with the next command "sails lift"
-#the endpoint is is localhost:1337/logistic/rest/
+#the endpoint is is localhost:1337/
 #add name of the model, example "Inbox or Office" followed by slash, operation name
 #operation name
 	#create
@@ -24,5 +24,15 @@
 
 #get
 #Only get method, allow parameters by url the rest of them not can't or the service will fail
+
+# Running test cases
+#1st you must create a file named ".env" in the root folder of the project
+#and set the propertie API_KEY  , with your api key of google, if you have not an 
+#api key read the following link:
+#https://developers.google.com/maps/documentation/distance-matrix/intro
+#then type in node console the following comand npm test
+#if you see the percent of coverage of code, 
+#type npm test:coverage in the node console , it 'll generate a reporte 
+#inside the folder named "coverage".  
 
 
