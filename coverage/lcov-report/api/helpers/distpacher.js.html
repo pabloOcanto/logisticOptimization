@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for api/helpers/distpacher.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\..\prettify.css" />
+    <link rel="stylesheet" href="..\..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\..\index.html">All files</a> / <a href="index.html">api/helpers</a> distpacher.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.52% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/66</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">1.52% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/66</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159
+160
+161
+162
+163
+164
+165
+166
+167
+168
+169
+170
+171
+172
+173
+174
+175
+176
+177
+178
+179
+180
+181
+182
+183
+184
+185
+186
+187
+188
+189
+190
+191
+192
+193
+194
+195
+196
+197
+198
+199
+200
+201
+202</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">module.exports = {
+&nbsp;
+&nbsp;
+	friendlyName: 'distpacher',
+&nbsp;
+&nbsp;
+	description: 'This object will be used like a helper \
+                with the final purpose to decide wich branch office will be assigned',
+&nbsp;
+	inputs: {
+		req: {
+			type: 'ref',
+			description: 'The current incoming request (req).',
+			required: true,
+		},
+	},
+&nbsp;
+&nbsp;
+	exits: {
+&nbsp;
+		err: {
+			description: 'something was wrong',
+		},
+&nbsp;
+	},
+&nbsp;
+&nbsp;
+	async fn(inputs, exits) {
+		const moment = <span class="cstat-no" title="statement not covered" >require('moment');</span>
+		const current_date = <span class="cstat-no" title="statement not covered" >require('../services/today');</span>
+&nbsp;
+		const inbox = <span class="cstat-no" title="statement not covered" >{ target: inputs.req.body.target, entry_date: inputs.req.body.entry_date, status: 'undelivered',egress_date:'' ,penaltyCost:0};</span>
+&nbsp;
+		let today = <span class="cstat-no" title="statement not covered" >current_date();</span>
+		let entry_date = <span class="cstat-no" title="statement not covered" >inbox.entry_date;</span>
+<span class="cstat-no" title="statement not covered" >		today = moment(today,'YYYY-MM-DD');</span>
+<span class="cstat-no" title="statement not covered" >		entry_date = moment(entry_date,'YYYY-MM-DD');</span>
+<span class="cstat-no" title="statement not covered" >		inbox.egress_date = current_date();</span>
+<span class="cstat-no" title="statement not covered" >		inbox.penaltyCost = today.diff(entry_date, 'days') * 70;</span>
+<span class="cstat-no" title="statement not covered" >		inbox.penaltyCost += 70;</span>
+<span class="cstat-no" title="statement not covered" >		inbox.penaltyCost = parseInt(inbox.penaltyCost);</span>
+&nbsp;
+&nbsp;
+/*
+ 
+  Author:pablo ocanto
+  date:20190117
+  Email:pomalianni@gmial.com
+  description:'This section calculate the distance of delivery 
+  between the destination and  each city of our warehouse and  
+  will storage into ordered temporal array by distance with respect 
+  to the destiny of the delivery'.
+&nbsp;
+  BEGIN
+&nbsp;
+*/	
+  	const offices = <span class="cstat-no" title="statement not covered" >await Offices.find({});</span>
+&nbsp;
+		let tempArr = <span class="cstat-no" title="statement not covered" >[];</span>
+<span class="cstat-no" title="statement not covered" >		for (i in offices) {</span>
+			const response = <span class="cstat-no" title="statement not covered" >await sails.helpers.distanceMatrix(inbox.target, offices[i].city);</span>
+<span class="cstat-no" title="statement not covered" >			if (response) {</span>
+				const attrib = <span class="cstat-no" title="statement not covered" >response.rows[0].elements[0];</span>
+				const distance = <span class="cstat-no" title="statement not covered" >parseFloat(attrib.distance.value / 1000).toFixed(2);</span>
+				const temporal = <span class="cstat-no" title="statement not covered" >{</span>
+					target: inbox.target,
+					warehouse: offices[i].id,
+					current_storage: offices[i].storage,
+					current_limte: offices[i].storage_limit,
+					distance:distance
+				};
+&nbsp;
+&nbsp;
+				
+<span class="cstat-no" title="statement not covered" >				if (tempArr.length === 0) {</span>
+<span class="cstat-no" title="statement not covered" >          			tempArr.push(temporal);</span>
+<span class="cstat-no" title="statement not covered" >          			continue</span>
+          		}
+&nbsp;
+        		var pos = <span class="cstat-no" title="statement not covered" >0;</span>
+<span class="cstat-no" title="statement not covered" >        		for (var i = 0; i &lt; tempArr.length-1; i += 1) {</span>
+<span class="cstat-no" title="statement not covered" >          			if (tempArr[i].distance &lt;= temporal.distance) {</span>
+<span class="cstat-no" title="statement not covered" >	            		pos = i;</span>
+<span class="cstat-no" title="statement not covered" >	            		break;</span>
+          			}
+      			}
+      			
+<span class="cstat-no" title="statement not covered" >      			if (i&gt;tempArr.length){</span>
+<span class="cstat-no" title="statement not covered" >          			tempArr.splice(tempArrt.length, 0, temporal);</span>
+        		}else{
+<span class="cstat-no" title="statement not covered" >          			tempArr.splice(pos, 0, temporal);</span>
+        		}
+&nbsp;
+        		
+        		
+			}
+		};
+&nbsp;
+&nbsp;
+		
+/*
+  END
+*/  
+&nbsp;
+/*
+ 
+  Author:pablo ocanto
+  date:20190117
+  Email:pomalianni@gmial.com
+  description:'This section check if it necesary to delivery nearby city 
+               when the warehouse reach the ninety-five percent of its storage.
+               and not overcome the delivery cost.'
+               delviry cost = 5km travelled plus seventy dollar for each day of delay.
+&nbsp;
+  BEGIN
+&nbsp;
+*/  
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		for (i in tempArr) {</span>
+			const limit_alert = <span class="cstat-no" title="statement not covered" >(((tempArr[i].current_storage + 1) * 100) / tempArr[i].current_limte).toFixed(2);</span>
+			const deliveryCost = <span class="cstat-no" title="statement not covered" >Math.round(tempArr[i].distance / 5);</span>
+			const penaltyCost = <span class="cstat-no" title="statement not covered" >inbox.penaltyCost;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			if (limit_alert &gt;= 95) {</span>
+<span class="cstat-no" title="statement not covered" >				continue;</span>
+			}
+&nbsp;
+<span class="cstat-no" title="statement not covered" >			if (deliveryCost &gt;= penaltyCost) {</span>
+<span class="cstat-no" title="statement not covered" >				tempArr[i].current_storage = parseInt(tempArr[i].current_storage) + 1;</span>
+<span class="cstat-no" title="statement not covered" >				warehouse = tempArr[i].warehouse;</span>
+<span class="cstat-no" title="statement not covered" >				inbox.office = warehouse;</span>
+<span class="cstat-no" title="statement not covered" >				inbox.status = 'delivered';</span>
+<span class="cstat-no" title="statement not covered" >				tempArr[i].current_storage += 1;</span>
+				//const update = await Offices.updateOne({ id: tempArr[i].warehouse }).set({ storage: tempArr[i].current_storage });
+				const update = <span class="cstat-no" title="statement not covered" >await Offices.update({ id: tempArr[i].warehouse }).set({ storage: tempArr[i].current_storage }).fetch();</span>
+				
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				if (!update) {</span>
+<span class="cstat-no" title="statement not covered" >					throw ("Couldn\'t update the storage");</span>
+				}
+<span class="cstat-no" title="statement not covered" >				break;</span>
+			}
+		}
+&nbsp;
+&nbsp;
+/*
+  Author:pablo ocanto
+  date:20190117
+  Email:pomalianni@gmial.com
+  description:'This section check if the new entry was not assigned , 
+                so it will assigned to nearby city, when only  not overcome 
+                the delivery cost.
+                delviry cost = 5km travelled plus seventy dollar for each day of delay.
+                         
+&nbsp;
+  BEGIN
+&nbsp;
+*/  
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (inbox.status === 'undelivered') {</span>
+<span class="cstat-no" title="statement not covered" >			for (i in tempArr) {</span>
+				const deliveryCost = <span class="cstat-no" title="statement not covered" >Math.round(tempArr[i].distance / 5);</span>
+				const penaltyCost = <span class="cstat-no" title="statement not covered" >inbox.penaltyCost;</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >				if (deliveryCost &gt;= penaltyCost) {</span>
+<span class="cstat-no" title="statement not covered" >					tempArr[i].current_storage = parseInt(tempArr[i].current_storage) + 1;</span>
+<span class="cstat-no" title="statement not covered" >					warehouse = tempArr[i].warehouse;</span>
+<span class="cstat-no" title="statement not covered" >					inbox.office = warehouse;</span>
+<span class="cstat-no" title="statement not covered" >					inbox.status = 'delivered';</span>
+<span class="cstat-no" title="statement not covered" >					tempArr[i].current_storage += 1;</span>
+					//const update = await Offices.updateOne({ id: tempArr[i].warehouse }).set({ storage: tempArr[i].current_storage });
+					
+					const update = <span class="cstat-no" title="statement not covered" >await Offices.update({ id: tempArr[i].warehouse }).set({ storage: tempArr[i].current_storage }).fetch();</span>
+				
+<span class="cstat-no" title="statement not covered" >					if (!update) {</span>
+<span class="cstat-no" title="statement not covered" >						throw ('Couldn\'t update the storage');</span>
+					}
+<span class="cstat-no" title="statement not covered" >					break;</span>
+				}
+			}
+		}
+&nbsp;
+&nbsp;
+  /*
+&nbsp;
+    END
+&nbsp;
+  */  
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		if (typeof inbox.office === 'undefined') {</span>
+<span class="cstat-no" title="statement not covered" >			inbox.egress_date = '';</span>
+		}
+&nbsp;
+		const entry = <span class="cstat-no" title="statement not covered" >await Inbox.create(inbox).fetch();</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		console.log(entry);</span>
+&nbsp;
+<span class="cstat-no" title="statement not covered" >		return exits.success(entry);</span>
+	},
+&nbsp;
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jan 24 2019 07:13:21 GMT-0300 (GMT-03:00)
+</div>
+</div>
+<script src="..\..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\..\sorter.js"></script>
+</body>
+</html>

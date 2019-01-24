@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for config/models.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="..\prettify.css" />
+    <link rel="stylesheet" href="..\base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(..\sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="..\index.html">All files</a> / <a href="index.html">config</a> models.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>1/1</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/0</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">100% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>1/1</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line high'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * Default model settings
+ * (sails.config.models)
+ *
+ * Your default, project-wide model settings. Can also be overridden on a
+ * per-model basis by setting a top-level properties in the model definition.
+ *
+ * For details about all available model settings, see:
+ * https://sailsjs.com/config/models
+ *
+ * For more general background on Sails model settings, and how to configure
+ * them on a project-wide or per-model basis, see:
+ * https://sailsjs.com/docs/concepts/models-and-orm/model-settings
+ */
+&nbsp;
+module.exports.models = {
+&nbsp;
+&nbsp;
+  //connection: 'mysql',
+&nbsp;
+  /***************************************************************************
+  *                                                                          *
+  * Whether model methods like `.create()` and `.update()` should ignore     *
+  * (and refuse to persist) unrecognized data-- i.e. properties other than   *
+  * those explicitly defined by attributes in the model definition.          *
+  *                                                                          *
+  * To ease future maintenance of your code base, it is usually a good idea  *
+  * to set this to `true`.                                                   *
+  *                                                                          *
+  * &gt; Note that `schema: false` is not supported by every database.          *
+  * &gt; For example, if you are using a SQL database, then relevant models     *
+  * &gt; are always effectively `schema: true`.  And if no `schema` setting is  *
+  * &gt; provided whatsoever, the behavior is left up to the database adapter.  *
+  * &gt;                                                                        *
+  * &gt; For more info, see:                                                    *
+  * &gt; https://sailsjs.com/docs/concepts/orm/model-settings#?schema           *
+  *                                                                          *
+  ***************************************************************************/
+&nbsp;
+  // schema: true,
+&nbsp;
+&nbsp;
+  /***************************************************************************
+  *                                                                          *
+  * How and whether Sails will attempt to automatically rebuild the          *
+  * tables/collections/etc. in your schema.                                  *
+  *                                                                          *
+  * &gt; Note that, when running in a production environment, this will be      *
+  * &gt; automatically set to `migrate: 'safe'`, no matter what you configure   *
+  * &gt; here.  This is a failsafe to prevent Sails from accidentally running   *
+  * &gt; auto-migrations on your production database.                           *
+  * &gt;                                                                        *
+  * &gt; For more info, see:                                                    *
+  * &gt; https://sailsjs.com/docs/concepts/orm/model-settings#?migrate          *
+  *                                                                          *
+  ***************************************************************************/
+&nbsp;
+   migrate: 'alter',
+&nbsp;
+&nbsp;
+  /***************************************************************************
+  *                                                                          *
+  * Base attributes that are included in all of your models by default.      *
+  * By convention, this is your primary key attribute (`id`), as well as two *
+  * other timestamp attributes for tracking when records were last created   *
+  * or updated.                                                              *
+  *                                                                          *
+  * &gt; For more info, see:                                                    *
+  * &gt; https://sailsjs.com/docs/concepts/orm/model-settings#?attributes       *
+  *                                                                          *
+  ***************************************************************************/
+&nbsp;
+  attributes: {
+    //createdAt: { type: 'number', autoCreatedAt: true, },
+    //createdAt: { type: 'number', autoUpdatedAt: true, },
+    //id: { type: 'number', autoIncrement: true, },
+    //--------------------------------------------------------------------------
+    //  /\   Using MongoDB?
+    //  ||   Replace `id` above with this instead:
+    //
+    // ```
+    // id: { type: 'string', columnName: '_id' },
+    // ```
+    //
+    // Plus, don't forget to configure MongoDB as your default datastore:
+    // https://sailsjs.com/docs/tutorials/using-mongo-db
+    //--------------------------------------------------------------------------
+  },
+&nbsp;
+  //customToJSON: function(){
+  //  return _.omit(this, ['createdAt', 'createdAt']
+  //  }
+&nbsp;
+&nbsp;
+  /******************************************************************************
+  *                                                                             *
+  * The set of DEKs (data encryption keys) for at-rest encryption.              *
+  * i.e. when encrypting/decrypting data for attributes with `encrypt: true`.   *
+  *                                                                             *
+  * &gt; The `default` DEK is used for all new encryptions, but multiple DEKs      *
+  * &gt; can be configured to allow for key rotation.  In production, be sure to   *
+  * &gt; manage these keys like you would any other sensitive credential.          *
+  *                                                                             *
+  * &gt; For more info, see:                                                       *
+  * &gt; https://sailsjs.com/docs/concepts/orm/model-settings#?dataEncryptionKeys  *
+  *                                                                             *
+  ******************************************************************************/
+&nbsp;
+  dataEncryptionKeys: {
+    default: 'xm90sfdhzwHdJxKPa1yLHCyHm/1BuE0mg5Sx1FkZZNo='
+  },
+&nbsp;
+&nbsp;
+  /***************************************************************************
+  *                                                                          *
+  * Whether or not implicit records for associations should be cleaned up    *
+  * automatically using the built-in polyfill.  This is especially useful    *
+  * during development with sails-disk.                                      *
+  *                                                                          *
+  * Depending on which databases you're using, you may want to disable this  *
+  * polyfill in your production environment.                                 *
+  *                                                                          *
+  * (For production configuration, see `config/env/production.js`.)          *
+  *                                                                          *
+  ***************************************************************************/
+&nbsp;
+  cascadeOnDestroy: true
+&nbsp;
+&nbsp;
+};
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Thu Jan 24 2019 07:13:21 GMT-0300 (GMT-03:00)
+</div>
+</div>
+<script src="..\prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="..\sorter.js"></script>
+</body>
+</html>
