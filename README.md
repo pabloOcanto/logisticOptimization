@@ -31,7 +31,7 @@
 #api key read the following link:
 #https://developers.google.com/maps/documentation/distance-matrix/intro
 #then type in node console the following comand npm test
-#if you see the percent of coverage of code, 
+#if you want to see the percent of code coverage , 
 #type npm test:coverage in the node console , it 'll generate a reporte 
 #inside the folder named "coverage".  
 
